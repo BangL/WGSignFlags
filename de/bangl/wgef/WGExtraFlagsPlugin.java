@@ -2,7 +2,6 @@ package de.bangl.wgef;
 
 import com.mewin.WGCustomFlags.WGCustomFlagsPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -36,8 +35,6 @@ public class WGExtraFlagsPlugin extends JavaPlugin {
         // Register all listeners
         this.signListener = new WGExtraFlagsSignListener(this);
 
-        PluginDescriptionFile descFile = getDescription();
-        System.out.println("[" + descFile.getName() + "] by " + descFile.getAuthors() + " activated.");
     }
 
     @Override
@@ -48,12 +45,11 @@ public class WGExtraFlagsPlugin extends JavaPlugin {
         this.pluginWorldGuard = null;
         this.signListener = null;
 
-        PluginDescriptionFile descFile = getDescription();
-        System.out.println("[" + descFile.getName() + "] by " + descFile.getAuthors() + " deactivated.");
     }
 
     private void loadConfig() {
-        getConfig().addDefault("any.path", "Any value.");
+        getConfig().addDefault("messages.sign", "You are not allowed to place this kind of sign in this region.");
+        getConfig().addDefault("messages.command", "You are not allowed to execute this command in this region.");
         getConfig().options().copyDefaults(true);
         saveConfig();
     }
@@ -69,7 +65,7 @@ public class WGExtraFlagsPlugin extends JavaPlugin {
 
     private WorldGuardPlugin getWorldGuard() {
         Plugin wg;
-        wg = Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
+        wg = this.getServer().getPluginManager().getPlugin("WorldGuard");
         if (wg == null || !(wg instanceof WorldGuardPlugin)) {
             return null;
         }

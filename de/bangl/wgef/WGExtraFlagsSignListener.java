@@ -1,12 +1,12 @@
 package de.bangl.wgef;
 
 import com.mewin.WGCustomFlags.flags.CustomSetFlag;
+import com.sk89q.worldguard.LocalPlayer;
+import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.flags.RegionGroup;
 import com.sk89q.worldguard.protection.flags.StringFlag;
-import com.sk89q.worldguard.protection.managers.RegionManager;
-import java.util.Set;
+import java.util.HashSet;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -39,20 +39,23 @@ public class WGExtraFlagsSignListener implements Listener {
     public void onSignChangeEvent(final SignChangeEvent event) {
 
         Player player = event.getPlayer();
-        RegionManager regionManager = plugin.getWGP().getRegionManager(player.getWorld());
-        Location loc = event.getBlock().getLocation();
+        LocalPlayer wgPlayer = plugin.getWGP().wrapPlayer(player);
+        
+        ApplicableRegionSet regions = plugin.getWGP().getRegionManager(player.getWorld())
+                .getApplicableRegions(event.getBlock().getLocation());
+        
+        HashSet<String> blocked = (HashSet<String>)regions.getFlag(FLAG_SIGNS_BLOCK, wgPlayer);
+        HashSet<String> allowed = (HashSet<String>)regions.getFlag(FLAG_SIGNS_ALLOW, wgPlayer);
 
-        if (((Set<String>)regionManager.getApplicableRegions(loc).getFlag(FLAG_SIGNS_BLOCK, plugin.getWGP().wrapPlayer(player))).contains(event.getLine(0).toLowerCase())) {
-            if (!((Set<String>)regionManager.getApplicableRegions(loc).getFlag(FLAG_SIGNS_ALLOW, plugin.getWGP().wrapPlayer(player))).contains(event.getLine(0).toLowerCase())) {
+        if (!blocked.equals(null) && (blocked.contains(event.getLine(0).toLowerCase()))) {
+            if (allowed.equals(null) || !allowed.contains(event.getLine(0).toLowerCase())) {
                 // Looks like we are not in an allowed region, so let's see if we are on a block list... 
 
                 // We are not on a blocked list, 
                 event.setCancelled(true);
-                String msg = this.plugin.getConfig().getString("You are not allowed to place this kind of sign in this region.");
+                String msg = this.plugin.getConfig().getString("messages.sign");
                 player.sendMessage(ChatColor.RED + msg);
             }
         }
-
     }
-
 }

@@ -1,10 +1,10 @@
-name: WorldGuardExtraFlags
+name: WGExtraFlags
 version: 0.1
 description: '"WorldGuard" extension to add own region flags like white/blacklistes signs or commands or other things. The WorldGuard flags for blocked/allowed commands are not working correctly anyways.'
 author: BangL
 website: http://bangl.de/
-depend: [WorldGuard, WorldEdit, WGCustomFlags]
-main: de.bangl.wgef.WorldGuardExtraFlagsPlugin
+depend: [WorldGuard, WGCustomFlags]
+main: de.bangl.wgef.WGExtraFlagsPlugin
 
 permissions:
   wgef.regions.own.*:
