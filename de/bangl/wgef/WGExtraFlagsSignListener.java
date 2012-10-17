@@ -81,9 +81,12 @@ public class WGExtraFlagsSignListener implements Listener {
 
     }
 
-    private Boolean checkFlag(CustomSetFlag<String> flagtype, ProtectedRegion region, String signname) {
-        Set<String> items = (Set<String>)region.getFlag(flagtype);
-        return items.contains(signname);
+    private Boolean checkFlag(CustomSetFlag flagtype, ProtectedRegion region, String signname) {
+        Object flag = region.getFlag(flagtype);
+        if (flag instanceof StringFlag) {
+          return ((Set<String>)(StringFlag)region.getFlag(flagtype)).contains(signname);
+        }
+        return null;
     }
 
 }
