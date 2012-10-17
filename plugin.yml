@@ -4,7 +4,6 @@ description: '"WorldGuard" extension to add own region flags like white/blacklis
 author: BangL
 website: http://bangl.de/
 depend: [WorldGuard, WorldEdit, WGCustomFlags]
-softdepend: [Essentials]
 main: de.bangl.wgef.WorldGuardExtraFlagsPlugin
 
 permissions:
