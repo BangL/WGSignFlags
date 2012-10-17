@@ -1,37 +1,13 @@
-name: WGExtraFlags
+name: WGSignFlags
 version: 0.1
-description: '"WorldGuard" extension to add own region flags like white/blacklistes signs or commands or other things. The WorldGuard flags for blocked/allowed commands are not working correctly anyways.'
+description: '"WorldGuard" extension to add own region flags to allow or block signs.'
 author: BangL
 website: http://bangl.de/
 depend: [WorldGuard, WGCustomFlags]
-main: de.bangl.wgef.WGExtraFlagsPlugin
+main: de.bangl.wgsf.WGSignFlagsPlugin
 
 permissions:
-  wgef.regions.own.*:
+  wgsf.flags.signs-block.*:
     default: op
-  wgef.regions.own.<region>:
-    default: op
-  wgef.regions.member.*:
-    default: op
-  wgef.regions.member.<region>:
-    default: op
-  wgef.regions.*:
-    default: op
-  wgef.regions.<region>:
-    default: op
-  wgef.flags.signs-block.*:
-    default: op
-  wgef.flags.signs-allow.*:
-    default: op
-  wgef.flags.cmds-block.*:
-    default: op
-  wgef.flags.cmds-allow.*:
-    default: op
-  wgef.flags.enderchest-access.*:
-    default: op
-  wgef.flags.enderpearl.*:
-    default: op
-  wgef.flags.leaf-growth.*:
-    default: op
-  wgef.flags.*:
+  wgsf.flags.signs-allow.*:
     default: op
