@@ -49,7 +49,7 @@ public class SignListener implements Listener {
 
         if (blocked != null && blocked.contains(signname)
                 && (allowed == null || !allowed.contains(signname))) {
-            String msg = this.plugin.getConfig().getString("messages.sign");
+            String msg = this.plugin.getConfig().getString("messages.blocked");
             player.sendMessage(ChatColor.RED + msg);
             event.setCancelled(true);
         }

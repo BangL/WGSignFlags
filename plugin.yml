@@ -5,9 +5,3 @@ author: BangL
 website: http://bangl.de/
 depend: [WorldGuard, WGCustomFlags]
 main: de.bangl.wgsf.WGSignFlagsPlugin
-
-permissions:
-  wgsf.flags.signs-block.*:
-    default: op
-  wgsf.flags.signs-allow.*:
-    default: op
