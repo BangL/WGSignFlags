@@ -24,13 +24,9 @@ permissions:
     default: op
   wgef.flags.signs-allow.*:
     default: op
-  wgef.flags.signs-xallow.*:
-    default: op
   wgef.flags.cmds-block.*:
     default: op
   wgef.flags.cmds-allow.*:
-    default: op
-  wgef.flags.cmds-xallow.*:
     default: op
   wgef.flags.enderchest-access.*:
     default: op

@@ -59,7 +59,8 @@ public class WGExtraFlagsPlugin extends JavaPlugin {
     }
 
     private WGCustomFlagsPlugin getWGCustomFlags() {
-        Plugin wgcf = this.getServer().getPluginManager().getPlugin("WGCustomFlags");
+        Plugin wgcf;
+        wgcf = this.getServer().getPluginManager().getPlugin("WGCustomFlags");
         if (wgcf == null || !(wgcf instanceof WGCustomFlagsPlugin)) {
             return null;
         }
@@ -67,7 +68,8 @@ public class WGExtraFlagsPlugin extends JavaPlugin {
     }
 
     private WorldGuardPlugin getWorldGuard() {
-        Plugin wg = Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
+        Plugin wg;
+        wg = Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
         if (wg == null || !(wg instanceof WorldGuardPlugin)) {
             return null;
         }
