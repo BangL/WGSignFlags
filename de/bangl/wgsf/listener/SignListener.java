@@ -44,8 +44,8 @@ public class SignListener implements Listener {
         Location loc = event.getBlock().getLocation();
         String signname = event.getLine(0).toLowerCase();
 
-        Set<String> blocked = Utils.getFlag(plugin.getWGP(), FLAG_SIGNS_BLOCK, player, loc);
-        Set<String> allowed = Utils.getFlag(plugin.getWGP(), FLAG_SIGNS_ALLOW, player, loc);
+        Set<String> blocked = Utils.getMergedFlag(plugin.getWGP(), FLAG_SIGNS_BLOCK, player, loc);
+        Set<String> allowed = Utils.getMergedFlag(plugin.getWGP(), FLAG_SIGNS_ALLOW, player, loc);
 
         if ((allowed != null && !allowed.contains(signname)
                 && (blocked == null || blocked.contains(signname)))
