@@ -20,7 +20,7 @@ import org.bukkit.plugin.Plugin;
 
 /**
  *
- * @author BangL
+ * @author BangL, mewin
  */
 public final class Utils {
     

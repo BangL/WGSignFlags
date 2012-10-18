@@ -2,11 +2,9 @@ package de.bangl.wgsf.listener;
 
 import com.mewin.WGCustomFlags.flags.CustomSetFlag;
 import com.sk89q.worldguard.protection.flags.RegionGroup;
-import com.sk89q.worldguard.protection.flags.StringFlag;
 import de.bangl.wgsf.Utils;
 import de.bangl.wgsf.WGSignFlagsPlugin;
 import de.bangl.wgsf.flags.SignFlag;
-import java.util.Set;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -17,7 +15,7 @@ import org.bukkit.event.block.SignChangeEvent;
 
 /**
  *
- * @author BangL
+ * @author BangL, mewin
  */
 public class SignListener implements Listener {
     private WGSignFlagsPlugin plugin;
