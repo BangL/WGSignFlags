@@ -38,7 +38,6 @@ public class SignListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onSignChangeEvent(final SignChangeEvent event) {
-
         Player player = event.getPlayer();
         Location loc = event.getBlock().getLocation();
         String signname = event.getLine(0).toLowerCase();
