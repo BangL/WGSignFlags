@@ -45,11 +45,14 @@ public class SignListener implements Listener {
         Location loc = event.getBlock().getLocation();
         String signname = event.getLine(0).toLowerCase();
         
-        Set<String> blocked = Utils.getFlag(plugin.getWGP(), FLAG_SIGNS_BLOCK, player, loc);
-        Set<String> allowed = Utils.getFlag(plugin.getWGP(), FLAG_SIGNS_ALLOW, player, loc);
+        /*Set<String> blocked = Utils.getFlag(plugin.getWGP(), FLAG_SIGNS_BLOCK, player, loc);
+        Set<String> allowed = Utils.getFlag(plugin.getWGP(), FLAG_SIGNS_ALLOW, player, loc);*/
 
-        if (blocked != null && blocked.contains(signname)
-                && (allowed == null || !allowed.contains(signname))) {
+        
+        
+        /*if (blocked != null && blocked.contains(signname)
+                && (allowed == null || !allowed.contains(signname))) {*/
+        if (!Utils.signAllowedAtLocation(plugin.getWGP(), signname, loc)) {
             String msg = this.plugin.getConfig().getString("messages.blocked");
             player.sendMessage(ChatColor.RED + msg);
             event.setCancelled(true);
