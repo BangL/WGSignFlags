@@ -5,7 +5,6 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.flags.InvalidFlagFormat;
 import com.sk89q.worldguard.protection.flags.RegionGroup;
 import org.bukkit.command.CommandSender;
-import org.bukkit.potion.PotionEffectType;
 
 /**
  *

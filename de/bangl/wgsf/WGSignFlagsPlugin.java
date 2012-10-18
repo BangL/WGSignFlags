@@ -1,8 +1,8 @@
 package de.bangl.wgsf;
 
-import de.bangl.wgsf.listener.SignListener;
 import com.mewin.WGCustomFlags.WGCustomFlagsPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import de.bangl.wgsf.listener.SignListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
