@@ -2,7 +2,6 @@ package de.bangl.wgsf.listener;
 
 import com.mewin.WGCustomFlags.flags.CustomSetFlag;
 import com.sk89q.worldguard.protection.flags.RegionGroup;
-import com.sk89q.worldguard.protection.flags.StringFlag;
 import de.bangl.wgsf.Utils;
 import de.bangl.wgsf.WGSignFlagsPlugin;
 import de.bangl.wgsf.flags.SignFlag;
@@ -44,15 +43,18 @@ public class SignListener implements Listener {
         Player player = event.getPlayer();
         Location loc = event.getBlock().getLocation();
         String signname = event.getLine(0).toLowerCase();
-        
+
         Set<String> blocked = Utils.getFlag(plugin.getWGP(), FLAG_SIGNS_BLOCK, player, loc);
         Set<String> allowed = Utils.getFlag(plugin.getWGP(), FLAG_SIGNS_ALLOW, player, loc);
 
-        if (blocked != null && blocked.contains(signname)
-                && (allowed == null || !allowed.contains(signname))) {
+        if ((allowed != null && !allowed.contains(signname)
+                && (blocked == null || blocked.contains(signname)))
+                || (blocked != null && blocked.contains(signname)
+                && (allowed == null || !allowed.contains(signname)))) {
             String msg = this.plugin.getConfig().getString("messages.blocked");
             player.sendMessage(ChatColor.RED + msg);
             event.setCancelled(true);
+            return;
         }
     }
 }
