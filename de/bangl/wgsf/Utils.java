@@ -54,12 +54,12 @@ public final class Utils {
         try {
             result = (HashSet<String>)regions.getFlag(flag, wgPlayer);
         } catch(Exception e) {
-            result = new HashSet<String>();
+            result = new HashSet<>();
         }
         if (result != null) {
             return (HashSet<String>)result;
         } else {
-            return new HashSet<String>();
+            return new HashSet<>();
         }
     }
     
