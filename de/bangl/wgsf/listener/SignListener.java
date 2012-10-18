@@ -5,7 +5,6 @@ import com.sk89q.worldguard.protection.flags.RegionGroup;
 import de.bangl.wgsf.Utils;
 import de.bangl.wgsf.WGSignFlagsPlugin;
 import de.bangl.wgsf.flags.SignFlag;
-import java.util.Set;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -16,7 +15,7 @@ import org.bukkit.event.block.SignChangeEvent;
 
 /**
  *
- * @author BangL
+ * @author BangL, mewin
  */
 public class SignListener implements Listener {
     private WGSignFlagsPlugin plugin;
@@ -43,14 +42,15 @@ public class SignListener implements Listener {
         Player player = event.getPlayer();
         Location loc = event.getBlock().getLocation();
         String signname = event.getLine(0).toLowerCase();
+        
+        /*Set<String> blocked = Utils.getFlag(plugin.getWGP(), FLAG_SIGNS_BLOCK, player, loc);
+        Set<String> allowed = Utils.getFlag(plugin.getWGP(), FLAG_SIGNS_ALLOW, player, loc);*/
 
-        Set<String> blocked = Utils.getMergedFlag(plugin.getWGP(), FLAG_SIGNS_BLOCK, player, loc);
-        Set<String> allowed = Utils.getMergedFlag(plugin.getWGP(), FLAG_SIGNS_ALLOW, player, loc);
-
-        if ((allowed != null && !allowed.contains(signname)
-                && (blocked == null || blocked.contains(signname)))
-                || (blocked != null && blocked.contains(signname)
-                && (allowed == null || !allowed.contains(signname)))) {
+        
+        
+        /*if (blocked != null && blocked.contains(signname)
+                && (allowed == null || !allowed.contains(signname))) {*/
+        if (!Utils.signAllowedAtLocation(plugin.getWGP(), signname, loc)) {
             String msg = this.plugin.getConfig().getString("messages.blocked");
             player.sendMessage(ChatColor.RED + msg);
             event.setCancelled(true);
