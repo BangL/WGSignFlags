@@ -5,6 +5,7 @@ import com.sk89q.worldguard.protection.flags.RegionGroup;
 import com.sk89q.worldguard.protection.flags.StringFlag;
 import de.bangl.wgsf.Utils;
 import de.bangl.wgsf.WGSignFlagsPlugin;
+import de.bangl.wgsf.flags.SignFlag;
 import java.util.Set;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -22,8 +23,8 @@ public class SignListener implements Listener {
     private WGSignFlagsPlugin plugin;
 
     // Sign flags
-    public static final CustomSetFlag FLAG_SIGNS_BLOCK = new CustomSetFlag("signs-block", new StringFlag("sign-block", RegionGroup.ALL));
-    public static final CustomSetFlag FLAG_SIGNS_ALLOW = new CustomSetFlag("signs-allow", new StringFlag("sign-allow", RegionGroup.ALL));
+    public static final CustomSetFlag FLAG_SIGNS_BLOCK = new CustomSetFlag("signs-block", new SignFlag("sign-block", RegionGroup.ALL));
+    public static final CustomSetFlag FLAG_SIGNS_ALLOW = new CustomSetFlag("signs-allow", new SignFlag("sign-allow", RegionGroup.ALL));
 
     public SignListener(WGSignFlagsPlugin plugin) {
         this.plugin = plugin;
