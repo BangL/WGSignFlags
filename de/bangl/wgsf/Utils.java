@@ -56,7 +56,7 @@ public final class Utils {
             return new HashSet<String>();
         }
     }
-    
+
     public static HashSet<String> getMergedFlag(WorldGuardPlugin wgp, CustomSetFlag flag, Player player, Location loc)
     {
         //LocalPlayer wgPlayer = wgp.wrapPlayer(player);
