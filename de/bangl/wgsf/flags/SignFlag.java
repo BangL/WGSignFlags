@@ -24,12 +24,12 @@ public class SignFlag extends CustomFlag<String>{
 
     @Override
     public String loadFromDb(String str) {
-        return str;
+        return unmarshal(str);
     }
 
     @Override
     public String saveToDb(String o) {
-        return o;
+        return (String) marshal(o);
     }
 
     @Override
