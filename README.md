@@ -1,4 +1,4 @@
-WGExtraFlags
+WGSignFlags
 ============
 
-"WorldGuard" extension to add own region flags like white/blacklistes signs or commands or other things. The WorldGuard flags for blocked/allowed commands are not working correctly anyways.
+WorldGuard extension to block the creation of signs in specific regions.

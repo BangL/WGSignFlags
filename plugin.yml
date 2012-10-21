@@ -1,7 +1,8 @@
 name: WGSignFlags
-version: 0.1
-description: '"WorldGuard" extension to add own region flags to allow or block signs.'
-authors: [BangL, mewin]
-website: http://bangl.de/
-depend: [WorldGuard, WorldEdit, WGCustomFlags]
 main: de.bangl.wgsf.WGSignFlagsPlugin
+description: WorldGuard extension to block the creation of signs in specific regions.
+version: 0.1
+
+authors: [ BangL, mewin ]
+depend: [ WorldGuard, WGCustomFlags ]
+softdepend: [ WorldEdit ]
