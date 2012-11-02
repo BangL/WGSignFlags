@@ -79,7 +79,7 @@ public class WGSignFlagsPlugin extends JavaPlugin {
         this.pluginWorldGuard = null;
         this.listenerSign = null;
 
-        saveConfig();
+        //saveConfig();
     }
 
 }
