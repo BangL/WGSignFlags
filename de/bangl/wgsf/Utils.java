@@ -20,15 +20,6 @@ package de.bangl.wgsf;
 import com.mewin.WGCustomFlags.WGCustomFlagsPlugin;
 import com.mewin.util.Util;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import com.sk89q.worldguard.protection.managers.RegionManager;
-import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-import de.bangl.wgsf.listener.SignListener;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 

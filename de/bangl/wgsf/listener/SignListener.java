@@ -17,11 +17,8 @@
  */
 package de.bangl.wgsf.listener;
 
-import com.mewin.WGCustomFlags.flags.CustomSetFlag;
-import com.sk89q.worldguard.protection.flags.RegionGroup;
 import de.bangl.wgsf.Utils;
 import de.bangl.wgsf.WGSignFlagsPlugin;
-import de.bangl.wgsf.flags.SignFlag;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
