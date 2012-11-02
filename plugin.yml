@@ -1,7 +1,7 @@
 name: WGSignFlags
 main: de.bangl.wgsf.WGSignFlagsPlugin
 description: WorldGuard extension to block the creation of signs in specific regions.
-version: 0.1
+version: 1.0
 
 authors: [ BangL, mewin ]
 depend: [ WorldGuard, WGCustomFlags ]
