@@ -17,7 +17,10 @@
 package de.bangl.wgsf;
 
 import com.mewin.WGCustomFlags.WGCustomFlagsPlugin;
+import com.mewin.WGCustomFlags.flags.CustomSetFlag;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.flags.RegionGroup;
+import de.bangl.wgsf.flags.SignFlag;
 import de.bangl.wgsf.listener.SignListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,6 +29,10 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author BangL <henno.rickowski@googlemail.com>
  */
 public class WGSignFlagsPlugin extends JavaPlugin {
+
+    // Sign flags
+    public static final CustomSetFlag FLAG_SIGNS_BLOCK = new CustomSetFlag("signs-block", new SignFlag("sign-block", RegionGroup.ALL));
+    public static final CustomSetFlag FLAG_SIGNS_ALLOW = new CustomSetFlag("signs-allow", new SignFlag("sign-allow", RegionGroup.ALL));
 
     // Plugins
     private WGCustomFlagsPlugin pluginWGCustomFlags;
@@ -54,6 +61,10 @@ public class WGSignFlagsPlugin extends JavaPlugin {
 
         // Init and register custom flags
         this.pluginWGCustomFlags = Utils.getWGCustomFlags(this);
+
+        // Register custom flags
+        this.pluginWGCustomFlags.addCustomFlag(FLAG_SIGNS_BLOCK);
+        this.pluginWGCustomFlags.addCustomFlag(FLAG_SIGNS_ALLOW);
 
         // Register all listeners
         this.listenerSign = new SignListener(this);

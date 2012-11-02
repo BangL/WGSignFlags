@@ -18,6 +18,7 @@
 package de.bangl.wgsf;
 
 import com.mewin.WGCustomFlags.WGCustomFlagsPlugin;
+import com.mewin.util.Util;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
@@ -60,87 +61,7 @@ public final class Utils {
         plugin.saveConfig();
     }
 
-    public static boolean signAllowedAtLocation(WorldGuardPlugin wgp, String signname, Location loc) {
-
-        // Valid world?
-        RegionManager rm = wgp.getRegionManager(loc.getWorld());
-        if (rm == null) {
-            return true;
-        }
-
-        Map<ProtectedRegion, Boolean> regionsToCheck = new HashMap<>();
-        Set<ProtectedRegion> ignoredRegions = new HashSet<>();
-
-        Iterator<ProtectedRegion> itr = rm.getApplicableRegions(loc).iterator();
-        while(itr.hasNext()) {
-            ProtectedRegion region = itr.next();
-            
-            if (ignoredRegions.contains(region)) {
-                continue;
-            }
-            
-            Object allowed = signAllowedInRegion(region, signname);
-            
-            if (allowed != null) {
-                ProtectedRegion parent = region.getParent();
-                while(parent != null) {
-                    ignoredRegions.add(parent);
-                    parent = parent.getParent();
-                }
-                regionsToCheck.put(region, (boolean) allowed);
-            }
-        }
-        
-        if (regionsToCheck.size() >= 1) {
-
-            Iterator<Entry<ProtectedRegion, Boolean>> itr2 = regionsToCheck.entrySet().iterator();
-            while(itr2.hasNext()) {
-                Entry<ProtectedRegion, Boolean> entry = itr2.next();
-                ProtectedRegion region = entry.getKey();
-                boolean value = entry.getValue();
-
-                if (ignoredRegions.contains(region)) {
-                    continue;
-                }
-
-                // allow > deny
-                if (value) {
-                    return true;
-                }
-            }
-            return false;
-        } else {
-
-            Object allowed = signAllowedInRegion(rm.getRegion("__global__"), signname);
-            if (allowed != null) {
-                return (boolean) allowed;
-            } else {
-                return true;
-            }
-
-        }
-    }
-    
-    public static Boolean signAllowedInRegion(ProtectedRegion region, String signname) {
-
-        HashSet<String> allowedSigns = (HashSet<String>)region.getFlag(SignListener.FLAG_SIGNS_ALLOW);
-        HashSet<String> blockedSigns = (HashSet<String>)region.getFlag(SignListener.FLAG_SIGNS_BLOCK);
-        
-        if (allowedSigns != null && allowedSigns.contains(signname)) {
-
-            // Allowed
-            return true;
-
-        } else if(blockedSigns != null && blockedSigns.contains(signname)) {
-
-            // Blocked
-            return false;
-
-        } else {
-
-            // Never heard about this sign, i dont care.
-            return null;
-
-        }
+    public static boolean signAllowedAtLocation(WGSignFlagsPlugin plugin, String signname, Location loc) {
+        return Util.flagAllowedAtLocation(plugin.getWGP(), signname, loc, WGSignFlagsPlugin.FLAG_SIGNS_ALLOW, WGSignFlagsPlugin.FLAG_SIGNS_BLOCK, null);
     }
 }

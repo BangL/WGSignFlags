@@ -38,16 +38,8 @@ import org.bukkit.event.block.SignChangeEvent;
 public class SignListener implements Listener {
     private WGSignFlagsPlugin plugin;
 
-    // Sign flags
-    public static final CustomSetFlag FLAG_SIGNS_BLOCK = new CustomSetFlag("signs-block", new SignFlag("sign-block", RegionGroup.ALL));
-    public static final CustomSetFlag FLAG_SIGNS_ALLOW = new CustomSetFlag("signs-allow", new SignFlag("sign-allow", RegionGroup.ALL));
-
     public SignListener(WGSignFlagsPlugin plugin) {
         this.plugin = plugin;
-
-        // Register custom flags
-        plugin.getWGCFP().addCustomFlag(FLAG_SIGNS_BLOCK);
-        plugin.getWGCFP().addCustomFlag(FLAG_SIGNS_ALLOW);
 
         // Register events
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -60,7 +52,7 @@ public class SignListener implements Listener {
         Location loc = event.getBlock().getLocation();
         String signname = event.getLine(0).toLowerCase();
 
-        if (!Utils.signAllowedAtLocation(plugin.getWGP(), signname, loc)) {
+        if (!Utils.signAllowedAtLocation(this.plugin, signname, loc)) {
             String msg = this.plugin.getConfig().getString("messages.blocked");
             player.sendMessage(ChatColor.RED + msg);
             event.setCancelled(true);
